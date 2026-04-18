@@ -2621,29 +2621,51 @@ var MOBANTU = {
 			jQuery(".single-content").append(jQuery(".erphpdown-box").clone());
 		}
 
-		if(that.plazy){
-			jQuery('.article-content img').each(function(){
-				if(!jQuery(this).hasClass("avatar") && !jQuery(this).hasClass("no-lazy")){
-					var img_src = jQuery(this).attr('src');
-					if(img_src){
-						if(_MBT.fancybox == '1' && !jQuery('.article-content .gallery').length){
-							if(!jQuery(this).parent("a").length){
-								jQuery(this).wrap("<a href='"+jQuery(this).attr('src')+"'></a>");
-							}	
-						}
-						jQuery(this).removeAttr("src").attr("data-original",img_src).addClass("loading");
-						jQuery(this).lazyload({
-							data_attribute: 'original',
-					        placeholder: _MBT.uri + '/static/img/imging.gif',
-					        threshold: 400,
-					        load: function(){
-					        	jQuery(this).removeClass("loading").addClass("loaded");
-					        }
-					    });
-					}
-				}
-			});
-		}
+        if(that.plazy){
+            jQuery('.article-content img').each(function(){
+                // 排除头像和手动标记不懒加载的图片
+                if(!jQuery(this).hasClass("avatar") && !jQuery(this).hasClass("no-lazy")){
+                    var $img = jQuery(this); // 缓存图片对象，避免重复查询
+                    var img_src = $img.attr('src'); // 图片裁剪版src
+                    var $parentA = $img.parent("a"); // 缓存父级a标签
+                    var original_href = ''; // 存储原图链接
+        
+                    // 确保图片src有值
+                    if(img_src){
+        
+                        // 生成唯一的分组ID（和主题原有逻辑一致）
+                        var tid = jQuery('.article-content').attr("id") || new Date().getTime();
+                        jQuery('.article-content').attr("id", tid);
+        
+                        // 开启Fancybox且无相册容器时处理
+                        if(_MBT.fancybox == '1' && !jQuery('.article-content .gallery').length){
+                            if(!$parentA.length){
+        		// 无a标签：去掉裁剪后缀得到原图，兜底用img_src
+                                // 无a标签：包裹a标签，href用原图链接+加灯箱属性
+        	          original_href = img_src.replace(/-\d+x\d+/, '') || img_src;
+                                $img.wrap("<a href='"+original_href+"' data-fancybox='"+tid+"'></a>");
+                            }else{
+        		// 已有a标签：读取原有href（原图），兜底用img_src
+                                // 已有a标签：只加data-fancybox属性
+        		original_href = $parentA.attr("href") || img_src;
+                                   $parentA.attr("data-fancybox", tid);
+                            }	
+                        }
+        
+                        // 懒加载核心逻辑（完全不变）
+                        $img.removeAttr("src").attr("data-original", img_src).addClass("loading");
+                        $img.lazyload({
+                            data_attribute: 'original',
+                            placeholder: _MBT.uri + '/static/img/imging.gif',
+                            threshold: 400,
+                            load: function(){
+                                jQuery(this).removeClass("loading").addClass("loaded");
+                            }
+                        });
+                    }
+                }
+            });
+        }
 
 		jQuery("body").on("click",".playicon.pre",function() {
 			var that = $(this);
@@ -2731,7 +2753,7 @@ var MOBANTU = {
 				jQuery(this).find(".gallery-fancy-item a").attr("data-fancybox",gid);
 			});
 		}else{
-			if(_MBT.fancybox == '1'){
+			if(_MBT.fancybox == '1' || true){
 				var tid = new Date().getTime(); 
 				jQuery('.article-content').attr("id",tid);
 				jQuery('.article-content img').each(function(){

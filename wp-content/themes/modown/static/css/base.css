@@ -1,10 +1,3 @@
-/* 
-	Theme Name: Modown
-	Theme URL: http://www.themege.net/7191.html
-	Description: WordPress资源下载主题
-	Author: 模板兔
-	Author URI: http://www.themege.net
-*/
 *{margin:0;padding:0;list-style:none;box-sizing:border-box;word-break: break-word;}
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}
 html{font-size:75.0%}
@@ -856,12 +849,12 @@ body.page-template-guestbook .single-content p:last-child{margin-bottom: 0}
 .article-content pre{margin:20px 0;font:12px/20px 'courier new';background:#4A4A4A;padding:10px 20px;color:#F8F8D4;border:none}
 .article-content blockquote{margin:20px;padding:15px 20px 1px;font-size:16px;color:#999;border-left:5px solid #EEE}
 .article-content blockquote p{margin:0;padding:0;margin-bottom:10px}
-.article-content h1{font-size: 24px;border-left: 8px solid var(--theme-color);padding: 10px 15px;line-height:30px;background: #fafafa;}
-.article-content h2{font-size:21px;border-left: 6px solid var(--theme-color);padding: 10px 15px;line-height:28px;background: #fafafa;}
-.article-content h3{font-size:18px;border-left: 4px solid var(--theme-color);padding: 10px 15px;line-height:26px;background: #fafafa;}
-.article-content h4{font-size:16px;border-left: 2px solid var(--theme-color);padding: 10px 15px;line-height:20px;background: #fafafa;}
-.article-content h5{font-size:15px;border-left: 2px solid var(--theme-color);padding: 10px 15px;line-height:20px;background: #fafafa;}
-.article-content h6{font-size:14px;border-left: 2px solid var(--theme-color);padding: 10px 15px;line-height:20px;background: #fafafa;}
+.article-content h1{font-size:24px;border-left: 8px solid var(--theme-color);padding: 10px 15px;line-height:30px;background: #fafafa;}
+.article-content h2{font-size:21px;border-left: 2px solid var(--theme-color);padding: 10px 15px;line-height:28px;background: #fafafa;}
+.article-content h3{font-size:18px;padding: 10px 15px;line-height:26px;background: #f9f9f9;}
+.article-content h4{font-size:16px;padding: 10px 15px;line-height:20px;background: #fafafa;}
+.article-content h5{font-size:15px;padding: 10px 15px;line-height:20px;background: #fafafa;}
+.article-content h6{font-size:14px;padding: 10px 15px;line-height:20px;background: #fafafa;}
 .article-content ul,.article-content ol{margin:0 0 20px 40px}
 .article-content ul, .article-content ul li{list-style: disc;}
 .article-content ol, .article-content ol li{list-style: decimal;}
